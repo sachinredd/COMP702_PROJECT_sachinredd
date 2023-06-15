@@ -50,7 +50,7 @@ def region_segmentation(image):
     item = {
         'top left': [0,round(y/2),0,round(x/2)],
         'top rigth':[0,round(y/2),round(x/2),x],
-        'low left' :[round(y/2),0,round(x/2),0],
+        'low left' :[round(y/2),y,round(x/2),0],
         'low right':[round(y/2),y,round(y/2),x]
     }
     image_regions= []
@@ -87,8 +87,8 @@ def getTrain():
             processed_image = preprocessing(processed_image)
             canny_segmentation = canny_edge_detection(processed_image)
             discrim_regions = region_segmentation(canny_segmentation)[1]
-            haralick = haralick(discrim_regions[0])
-            x_train.append(haralick)
+            haralick1 = haralick(discrim_regions[0])
+            x_train.append(haralick1)
             y_train.append(info)
 
     return x_train, y_train
@@ -116,9 +116,9 @@ def getTest():
         processed_image = preprocessing(image)
         canny_segmentation = canny_edge_detection(processed_image)
         discrim_regions = region_segmentation(canny_segmentation)[1]
-        haralick = haralick(discrim_regions[0])
+        haralick1 = haralick1(discrim_regions[0])
 
-        x_test.append(haralick)  # Append which feature extraction method you one you want
+        x_test.append(haralick1)  # Append which feature extraction method you one you want
     return x_test,yl
 
 
